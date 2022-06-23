@@ -1,6 +1,14 @@
 import React from 'react';
 import './index.css'
 const TodoContainer = ({todo,setTodo}) => {
+    if(todo===undefined){
+       return(
+        <div className='EmptyContainer'>
+             <h1>할일이 없습니다.</h1>
+             <p>새로운 할일을 추가해 보세요</p>
+        </div>
+       ) 
+    }
     return (
         <div className='TodoContainer'>
            <div>

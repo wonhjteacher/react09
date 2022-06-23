@@ -6,11 +6,11 @@ import TodoTitleArea from './components/TodoTitleArea'
 function App() {
   const [todos,setTodos] = useState([
     {
-      title:'아침5기상' , 
+      title:'🤷‍♀️아침5기상' , 
       content:'오늘은 아침 일찍 일어나서 정신이 맑을 때 새벽 공부를 해야지',
     },
     {
-      title:'점심 1시' , 
+      title:'😋점심 1시' , 
       content:'점심은 만칼로리 섭취',
     }
    ])
@@ -32,7 +32,15 @@ function App() {
     ])
     setSelectedTodoIndex(todos.length);
   }
-
+  const deleteTodo = (index) => {
+      const newTodos = [...todos] ;
+      newTodos.splice(index,1) //인덱스 부터 한개 까지 삭제된 배열 리턴 
+      setTodos(newTodos)
+      if(index===selectedTodoIndex){
+        setSelectedTodoIndex(0);
+      }
+  }
+   
   return (
     <div className="App">
       <TodoTitleArea 
@@ -40,6 +48,7 @@ function App() {
       setSelectedTodoIndex={setSelectedTodoIndex}
       selectedTodoIndex={selectedTodoIndex}
       addTodo={addTodo} 
+      deleteTodo={deleteTodo}
       />
       <TodoContainer 
       todo={todos[selectedTodoIndex]} 

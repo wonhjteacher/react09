@@ -25,3 +25,18 @@
     outline: none;
     box-sizing: border-box;
 }
+.EmptyContainer h1{
+    width: 100%;
+    background-color: #fff;
+    font-size: 1.25rem;
+    padding: 15px 0;
+    font-weight: 500;
+}
+
+.EmptyContainer p{
+    width: 100%;
+    background-color: #fff;
+    font-size: 0.875rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
