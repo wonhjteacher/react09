@@ -1,8 +1,8 @@
 import React from 'react';
 import TodoAddBtn from './../TodoAddBtn';
 import TodoList from './../TodoList';
-
-const TodoTitleArea= ({todos,setSelectedTodoIndex,selectedTodoIndex}) => {
+import './index.css'
+const TodoTitleArea= ({todos,setSelectedTodoIndex,selectedTodoIndex,addTodo}) => {
     return (
         <div className='TodoTitleArea'>
             <h1>Planner</h1>
@@ -11,7 +11,9 @@ const TodoTitleArea= ({todos,setSelectedTodoIndex,selectedTodoIndex}) => {
              setSelectedTodoIndex={setSelectedTodoIndex}
              selectedTodoIndex={selectedTodoIndex}
              />
-            <TodoAddBtn />
+            <TodoAddBtn 
+            onClick={addTodo} 
+            />
         </div>
     );
 };

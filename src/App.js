@@ -21,12 +21,25 @@ function App() {
     newTodos[selectedTodoIndex] = newTodo  ;
     setTodos(newTodos);  
   }
+
+  const addTodo = () => {
+    setTodos([
+      ...todos,
+      {
+        title:'😊Untitled',
+        content:''
+      }
+    ])
+    setSelectedTodoIndex(todos.length);
+  }
+
   return (
     <div className="App">
       <TodoTitleArea 
       todos={todos} 
       setSelectedTodoIndex={setSelectedTodoIndex}
-      selectedTodoIndex={selectedTodoIndex} 
+      selectedTodoIndex={selectedTodoIndex}
+      addTodo={addTodo} 
       />
       <TodoContainer 
       todo={todos[selectedTodoIndex]} 

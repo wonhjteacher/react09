@@ -1,12 +1,12 @@
 import React from 'react';
+import './index.css';
 
-const TodoItem = ({children,onClickItem}) => {
+const TodoItem = ({children,onClickItem,isSelected}) => {
     console.log(children)
     return (
-        <div>
-            <div onClick={onClickItem}>
+        <div onClick={onClickItem} className={isSelected ? 'TodoItem active' : 'TodoItem' }> 
              {children}
-            </div>
+             <button className='TodoItem__deleteBtn'>Del</button>
         </div>
     );
 };

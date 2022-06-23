@@ -9,6 +9,7 @@ const TodoList = ({todos,selectedTodoIndex,setSelectedTodoIndex}) => {
                     <TodoItem 
                     key={index}
                     onClickItem={()=>{setSelectedTodoIndex(index)}}
+                    isSelected={index===selectedTodoIndex}
                     >
                         {todo.title}
                     </TodoItem>
