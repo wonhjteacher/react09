@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TodoContainer = ({todo,setTodos}) => {
+const TodoContainer = ({todo,setTodo}) => {
     return (
         <div className='TodoContainer'>
            <div>
@@ -8,7 +8,7 @@ const TodoContainer = ({todo,setTodos}) => {
                 className='TodoContainer__title' 
                 value={todo.title}  
                 onChange={(e)=>{
-                    setTodos({
+                    setTodo({
                         ...todo,
                         title: e.target.value,
                     })
@@ -20,7 +20,7 @@ const TodoContainer = ({todo,setTodos}) => {
                 className='TodoContainer__body' 
                 value={todo.content}
                 onChange={(e)=>{
-                    setTodos({
+                    setTodo({
                         ...todo,
                         content:e.target.value,
                     })

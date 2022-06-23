@@ -14,7 +14,13 @@ function App() {
       content:'점심은 만칼로리 섭취',
     }
    ])
-  const [selectedTodoIndex,setSelectedTodoIndex] = useState(0)
+  const [selectedTodoIndex,setSelectedTodoIndex] = useState(0);
+   
+  const setTodo = (newTodo) => { //새로적은 값으로 todos 를 교체 
+    const newTodos  = [...todos]; // todos가 훼손되지 않도록 복사 새로운 newTodos 배열이 생긴것  
+    newTodos[selectedTodoIndex] = newTodo  ;
+    setTodos(newTodos);  
+  }
   return (
     <div className="App">
       <TodoTitleArea 
@@ -22,7 +28,7 @@ function App() {
       />
       <TodoContainer 
       todo={todos[selectedTodoIndex]} 
-      setTodos={setTodos} 
+      setTodo={setTodo} 
       />
     </div>
   );
