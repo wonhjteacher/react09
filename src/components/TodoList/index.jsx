@@ -1,10 +1,18 @@
 import React from 'react';
+import TodoItem from './../TodoItem';
 
-const TodoList = ({todos}) => {
+const TodoList = ({todos,selectedTodoIndex,setSelectedTodoIndex}) => {
     return (
         <div>
             {
-                todos.map((todo,index)=><div key={index}>{todo.title}</div>)
+                todos.map((todo,index)=>(
+                    <TodoItem 
+                    key={index}
+                    onClickItem={()=>{setSelectedTodoIndex(index)}}
+                    >
+                        {todo.title}
+                    </TodoItem>
+                ))
             }
         </div>
     );

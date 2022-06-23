@@ -25,6 +25,8 @@ function App() {
     <div className="App">
       <TodoTitleArea 
       todos={todos} 
+      setSelectedTodoIndex={setSelectedTodoIndex}
+      selectedTodoIndex={selectedTodoIndex} 
       />
       <TodoContainer 
       todo={todos[selectedTodoIndex]} 
