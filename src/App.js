@@ -2,35 +2,34 @@ import './App.css';
 import { useState } from 'react';
 import TodoContainer from './components/TodoContainer'
 import TodoTitleArea from './components/TodoTitleArea'
+import { setItem , getItem } from './lib/storage';
+import debounce from 'lodash.debounce';
+
+const debounceSetItem = debounce(setItem,6000)
 
 function App() {
-  const [todos,setTodos] = useState([
-    {
-      title:'🤷‍♀️아침5기상' , 
-      content:'오늘은 아침 일찍 일어나서 정신이 맑을 때 새벽 공부를 해야지',
-    },
-    {
-      title:'😋점심 1시' , 
-      content:'점심은 만칼로리 섭취',
-    }
-   ])
+  const [todos,setTodos] = useState(getItem('todo') ||  [])
   const [selectedTodoIndex,setSelectedTodoIndex] = useState(0);
    
   const setTodo = (newTodo) => { //새로적은 값으로 todos 를 교체 
     const newTodos  = [...todos]; // todos가 훼손되지 않도록 복사 새로운 newTodos 배열이 생긴것  
     newTodos[selectedTodoIndex] = newTodo  ;
     setTodos(newTodos);  
+    debounceSetItem('todo',newTodos)
   }
 
   const addTodo = () => {
-    setTodos([
+    const newTodos = [
       ...todos,
       {
         title:'😊Untitled',
         content:''
       }
-    ])
+    ]
+    setTodos(newTodos)
+  
     setSelectedTodoIndex(todos.length);
+    debounceSetItem('todo',newTodos)
   }
   const deleteTodo = (index) => {
       const newTodos = [...todos] ;
@@ -39,6 +38,7 @@ function App() {
       if(index===selectedTodoIndex){
         setSelectedTodoIndex(0);
       }
+      debounceSetItem('todo',newTodos)
   }
    
   return (
