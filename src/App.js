@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState,useCallback } from 'react';
 import TodoContainer from './components/TodoContainer'
 import TodoTitleArea from './components/TodoTitleArea'
 import { setItem , getItem } from './lib/storage';
@@ -11,14 +11,14 @@ function App() {
   const [todos,setTodos] = useState(getItem('todo') ||  [])
   const [selectedTodoIndex,setSelectedTodoIndex] = useState(0);
    
-  const setTodo = (newTodo) => { //새로적은 값으로 todos 를 교체 
+  const setTodo = useCallback((newTodo) => { //새로적은 값으로 todos 를 교체 
     const newTodos  = [...todos]; // todos가 훼손되지 않도록 복사 새로운 newTodos 배열이 생긴것  
     newTodos[selectedTodoIndex] = newTodo  ;
     setTodos(newTodos);  
     debounceSetItem('todo',newTodos)
-  }
+  },[selectedTodoIndex, todos])
 
-  const addTodo = () => {
+  const addTodo = useCallback(() => {
     const newTodos = [
       ...todos,
       {
@@ -30,8 +30,9 @@ function App() {
   
     setSelectedTodoIndex(todos.length);
     debounceSetItem('todo',newTodos)
-  }
-  const deleteTodo = (index) => {
+  },[todos])
+
+  const deleteTodo = useCallback((index) => {
       const newTodos = [...todos] ;
       newTodos.splice(index,1) //인덱스 부터 한개 까지 삭제된 배열 리턴 
       setTodos(newTodos)
@@ -39,7 +40,7 @@ function App() {
         setSelectedTodoIndex(0);
       }
       debounceSetItem('todo',newTodos)
-  }
+  },[selectedTodoIndex, todos])
    
   return (
     <div className="App">
